@@ -31,9 +31,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -127,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "tatadesign"
+  "defaultProject": "tatadesign",
+  "cli": {
+    "analytics": "5f02577f-3f1c-4efd-9162-e51214fd42fe"
+  }
 }
