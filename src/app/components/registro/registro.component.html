@@ -1,0 +1,77 @@
+<div class="container-fluid mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <form [formGroup]="form" (ngSubmit)="submit($event)">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input 
+                        formControlName="nombre"
+                        id="nombre" 
+                        type="text" 
+                        class="form-control"
+                        (keypress)="validaTextNumber($event,'text')"
+                        >
+                        <div *ngIf="f.nombre.invalid && f.nombre.touched" class="alert alert-danger">
+                            <span *ngIf="f.nombre.errors.required">Es un campo obgatorio.</span>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input 
+                        formControlName="apellido"
+                        id="apellido" 
+                        type="text" 
+                        class="form-control"
+                        (keypress)="validaTextNumber($event,'text')">
+                        <div *ngIf="f.apellido.invalid && f.apellido.touched" class="alert alert-danger">
+                            <span *ngIf="f.apellido.errors.required">Es un campo obgatorio.</span>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        formControlName="email"
+                        id="email" 
+                        type="email" 
+                        class="form-control">
+                        <div *ngIf="errorEmail" class="alert alert-danger">
+                            <span>Por favor ingrese una Email válida.</span>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input 
+                        formControlName="telefono"
+                        id="telefono" 
+                        type="text" 
+                        class="form-control"
+                        (keypress)="validaTextNumber($event,'numeric')">
+                        <div *ngIf="errorTelefono" class="alert alert-danger">
+                            <span>Máximo 10 dígitos.</span>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectorPrograma">Programa de interés</label>
+                    <select class="form-control" id="selectorPrograma" formControlName="selectorPrograma">
+                        <ng-container *ngFor="let item of listProgramas">
+                            <option [value]="item?.id">{{item?.name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comentario">Comentario</label>
+                    <textarea 
+                        formControlName="comentario"
+                        id="comentario" 
+                        type="text" 
+                        class="form-control"></textarea>
+                        <div *ngIf="errorComentario" class="alert alert-danger">
+                            <span>Máximo 200 Caracteres.</span>
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
