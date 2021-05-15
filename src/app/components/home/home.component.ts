@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NoticiasService } from 'src/app/services/noticias.service';
+import { fromRoot } from 'src/app/reducer/app.redux.module';
+import { Store } from '@ngrx/store';
+import { appState } from 'src/app/reducer/app.reducer';
+
 
 @Component({
   selector: 'app-home',
@@ -9,18 +12,17 @@ import { NoticiasService } from 'src/app/services/noticias.service';
 export class HomeComponent implements OnInit {
 
   listNoticias: any;
+  listNoticias$: any;
 
-  constructor( private noticias: NoticiasService) { }
+  constructor( private store: Store<{getNoticias: appState}> ) { }
 
   ngOnInit(): void {
-    this.getListoNoticias();
+    this.getDataNoticias();
   }
 
-  getListoNoticias() {
-    this.noticias.getListNoticias().subscribe((res) => {
-      this.listNoticias = res;
-      console.log(res);
-    });
+  getDataNoticias() {
+    this.store.dispatch(fromRoot.GetDataNoticias());
+    this.store.select(fromRoot.SelectNoticiasData).subscribe(items => this.listNoticias= items);
   }
 
 }

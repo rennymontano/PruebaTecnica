@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import {  ActivatedRoute } from '@angular/router'
+import { fromRoot } from 'src/app/reducer/app.redux.module';
+import { Store } from '@ngrx/store';
+import { appState } from 'src/app/reducer/app.reducer';
 
 @Component({
   selector: 'app-detalle-noticia',
@@ -10,25 +13,19 @@ import {  ActivatedRoute } from '@angular/router'
 export class DetalleNoticiaComponent implements OnInit {
 
   listNoticias: any;
-  idNoticia: string = '';
   trueNoticia = true;
 
   constructor( private noticias: NoticiasService,
-    private actRouter: ActivatedRoute) { }
+    private actRouter: ActivatedRoute,
+    private store: Store<{getNoticias: appState}> ) { }
 
   ngOnInit(): void {
-    this.idNoticia = this.actRouter.snapshot.params.id;
-    this.getListoNoticias();
+    const idNoticia = this.actRouter.snapshot.params.id;
+    this.getNoticiasID(idNoticia);
   }
 
-  getListoNoticias() {
-    this.noticias.getListNoticias().subscribe((res) => {
-      this.listNoticias = res.filter((item: any) => {
-        if(item.id === this.idNoticia) {
-          return item;
-        }
-      });
-      this.trueNoticia = this.listNoticias.length == 0 ? false :  true;
-    });
+  getNoticiasID(idNt: any){
+    this.store.select(fromRoot.SelectNoticiaData, {id: idNt}).subscribe(items => this.listNoticias = items);
   }
+
 }

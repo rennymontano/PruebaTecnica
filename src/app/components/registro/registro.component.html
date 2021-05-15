@@ -1,4 +1,5 @@
-<div class="container-fluid mt-4 mb-4">
+<div class="ajuste container-fluid mt-4 mb-4">
+    <h5>Formulario de Registros</h5>
     <div class="row justify-content-center">
         <div class="col-5">
             <form [formGroup]="form" (ngSubmit)="submit($event)">
@@ -70,7 +71,7 @@
                             <span>Máximo 200 Caracteres.</span>
                         </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>
     </div>
