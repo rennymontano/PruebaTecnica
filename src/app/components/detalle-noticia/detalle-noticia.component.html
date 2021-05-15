@@ -4,6 +4,9 @@
         <ng-container *ngFor='let item of listNoticias'>
             <div class="col-sm-12 mt-2">
                 <div class="card">
+                  <div class="cont-img">
+                    <img [src]="urlImg" alt="">
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title">{{item?.title}}</h5>
                     <p class="card-text" [innerHTML]="item?.body" ></p>

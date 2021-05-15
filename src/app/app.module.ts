@@ -31,7 +31,8 @@ import { environment } from 'src/environments/environment.prod';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot({
-      getNoticias: fromRoot.getDataTotal
+      getNoticias: fromRoot.getDataTotal,
+      getImagenes: fromRoot.getImagen
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

@@ -18,7 +18,6 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarForm();
-    console.log(this.f);
     this.getProgramas();
   }
 
@@ -72,7 +71,6 @@ export class RegistroComponent implements OnInit {
   submit(event: any){
     event.preventDefault();
     if(this.form.valid){
-      console.log(this.form.value);
       this.registro.setRegistro(this.form.value).subscribe((res:any) => {
         Swal.fire('Registro exitoso...', '', 'success').then((value) => {
           this.resetValue();

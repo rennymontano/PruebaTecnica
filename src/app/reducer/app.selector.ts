@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { appState } from './app.reducer';
+import { appState, imgState } from './app.interface';
 
 
 export const SelectNoticia = createFeatureSelector<appState>('getNoticias');
@@ -15,4 +15,11 @@ export const SelectNoticiaData = createSelector(
       if (state.data !== null)
         return state.data.filter((item: any) => item.id === props.id)
     }
+);
+
+export const SelectImagen = createFeatureSelector<imgState>('getImagenes');
+
+export const SelectImagenData = createSelector(
+  SelectImagen,
+  (state: imgState) => state
 );

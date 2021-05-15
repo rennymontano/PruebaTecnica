@@ -1,14 +1,17 @@
-import { GetDataService, ErrorService, GetDataNoticias} from './app.action';
+import { GetDataService, ErrorService, GetDataNoticias, GetDataImagen} from './app.action';
 import { NoticiasEffects } from './app.effects';
-import { getDataTotal } from './app.reducer';
-import { SelectNoticiaData, SelectNoticiasData } from './app.selector';
+import { getDataTotal, getImagen } from './app.reducer';
+import { SelectNoticiaData, SelectNoticiasData, SelectImagenData } from './app.selector';
 
 export const fromRoot = {
     GetDataService, 
     ErrorService, 
     GetDataNoticias,
+    GetDataImagen,
     NoticiasEffects,
     getDataTotal,
+    getImagen,
     SelectNoticiaData,
-    SelectNoticiasData
+    SelectNoticiasData,
+    SelectImagenData
 };
